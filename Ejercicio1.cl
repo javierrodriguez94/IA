@@ -1,4 +1,4 @@
-; (= (length x) (length y))
+
 
 (defun lp-rec (x y p)
   (expt (lp-rec-aux x y p) 
@@ -83,7 +83,7 @@ hiperSuperBigVectors
 
 (time (nearest '(0.1 0.1 0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1) hiperSuperBigVectors #'l2-mapcar))
 
-; Tiempo medido desde mi ordenador(Jorge):
+
 ;;CG-USER(41): 
 ; cpu time (non-gc) 0.015600 sec user, 0.000000 sec system
 ; cpu time (gc)     0.031201 sec user, 0.000000 sec system
@@ -165,7 +165,7 @@ hiperSuperBigVectors
 ; Page Faults: major: 0 (gc: 0), minor: 0 (gc: 0)
 ;(0.1 0.1 0.1 0.2 -0.1 -0.1 0.2 -0.1 -0.1 0.2 ...)
 
-;;Ejercicio 2(Javi)
+;;Ejercicio 2
 
 ;;;2.1
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -223,7 +223,7 @@ hiperSuperBigVectors
 
 
 
-;;Ejercicio 3(Jorge)
+;;Ejercicio 3
 
 ;3.1
 (defun combine-elt-lst (elt lst)
