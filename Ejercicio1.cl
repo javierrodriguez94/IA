@@ -183,15 +183,24 @@ hiperSuperBigVectors
 
 (defun newton (f g tol-abs max-iter x0) 
 	
-	(if (= (setf max-iter (- max-iter 1)) -1) )
-        	(nil)
-        	(if (< (- (setf xn (- x0 (/ (funcall f x0) (funcall g x0) ))) x0) tol-abs)
-             		x0
-             		(newton f g tol-abs max-iter xn)
+	(if (= max-iter 0) ;Si el maximo de iteraciones es cero devuelve nil
+        	nil
+        	(if (< (abs (- (setf xn (- x0 (/ (funcall 'f x0) (funcall 'g x0)))) x0)) tol-abs) ;Comprobamos si en esta iteracion hemos encontrado una raiz de la funcion
+             		x0 ;Si hemos encontrado una raiz termina
+             		(newton 'f 'g tol-abs (- max-iter 1) xn) ; Si no iteramos una vez mas con el nuevo valor obtenido y reduciendo el max-iter ya que hemos consumido una iteracion
              	)
 	)
 )
 
+(newton 'f 'g 1 2 2)
+
+
+(defun f (x)
+       (+ x 1)
+)
+(defun g (x)
+       1
+)
 
 
 ;;;2.2
