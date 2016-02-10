@@ -23,8 +23,8 @@
 
 (defun newton (f g tol-abs max-iter x0) 
 	
-	(if (or (= (setf max-iter (- max-iter 1)) 0) (= 1 0))
-         (if (= x0 (setf xn (- x0 (/ (f x0) (g x0) ))))
+	(if (or (= (setf max-iter (- max-iter 1)) 0) ())
+         (if (= x0 (setf xn (- x0 (/ (funcall f x0) (funcall g x0) ))))
              x0
              (newton f g tol-abs xn)
              )
@@ -34,7 +34,9 @@
 )
 
 
-
+(defun f (x)
+  (+ x 1)
+)
 
 (defun g (x)
   1)
