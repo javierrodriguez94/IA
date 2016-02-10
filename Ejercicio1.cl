@@ -167,6 +167,62 @@ hiperSuperBigVectors
 
 ;;Ejercicio 2(Javi)
 
+;;;2.1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; newton (f g tol-abs max-iter x0)
+;;; Estima el cero de una función mediante Newton_Raphson
+;;;
+;;; INPUT: f: función cuyo cero se desea encontrar
+;;; g: derivada de f
+;;; tol-abs: tolerancia para convergencia
+;;; max-iter: máximo número de iteraciones
+;;; x0: estimación inicial del cero (semilla)
+;;;
+;;; OUTPUT: estimación del cero de f, o NIL si no converge
+;;;
+
+(defun newton (f g tol-abs max-iter x0) 
+	
+	(if (= (setf max-iter (- max-iter 1)) -1) )
+        	(nil)
+        	(if (< (- (setf xn (- x0 (/ (funcall f x0) (funcall g x0) ))) x0) tol-abs)
+             		x0
+             		(newton f g tol-abs max-iter xn)
+             	)
+	)
+)
+
+
+
+;;;2.2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; un-cero-newton (f g tol-abs max-iter semillas)
+;;; Prueba con distintas semillas iniciales hasta que Newton
+;;; converge
+;;;
+;;; INPUT: f: función de la que se desea encontrar un cero
+;;; g: derivada de f
+;;; tol-abs: tolerancia para convergencia
+;;; max-iter: máximo número de iteraciones
+;;; semillas: semillas con las que invocar a Newton
+;;;
+;;; OUTPUT: el primer cero de f que se encuentre, o NIL si se diverge
+;;; para todas las semillas
+;;;
+ (defun un-cero-newton (f g tol-abs max-iter semillas)
+    (if (equal semillas nil) 
+      nil
+    )
+    (setf result (mapcar #'newton semillas))
+    (if (equal result nil)
+      nil
+      (first result)
+    )
+ )
+
+
+
+
 ;;Ejercicio 3(Jorge)
 
 ;3.1
