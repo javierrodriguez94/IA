@@ -261,8 +261,30 @@ hiperSuperBigVectors
 >> (todos-ceros-newton funcion derivada tol iters lst-semillas3)
 (1.0 4.0 -3.0)
 
-
-
+;2.3
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; todos-ceros-newton (f g tol-abs max-iter semillas)
+;;; Prueba con distintas semillas iniciales y devuelve las raíces
+;;; encontradas por Newton para dichas semillas
+;;;
+;;; INPUT: f: función de la que se desea encontrar un cero
+;;; g: derivada de f
+;;; tol-abs: tolerancia para convergencia
+;;; max-iter: máximo número de iteraciones
+;;; semillas: semillas con las que invocar a Newton
+;;;
+;;; OUTPUT: todas las raíces que se encuentren, o NIL si se diverge
+;;; para todas las semillas
+;;;
+(defun todos-ceros-newton (f g tol-abs max-iter semillas)
+       (if (equal semillas nil) 
+       	   nil
+      	   (if (equal (append r (newton 'f 'g tol-abs max-iter (pop semillas))) nil) ;El valor que saca el pop se le pasa a newton
+      	 	(un-cero-newton 'f 'g tol-abs max-iter semillas) ;La lista semillas que estamos pasando tiene un elemento menos, el primero que saca el pop y ya se ha probado
+      		r
+	   )    
+       )
+)
 
 
 
