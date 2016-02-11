@@ -1,5 +1,3 @@
-
-
 (defun lp-rec (x y p)
   (expt (lp-rec-aux x y p) 
         (/ 1 p)))
@@ -185,14 +183,14 @@ hiperSuperBigVectors
 	
 	(if (= max-iter 0) ;Si el maximo de iteraciones es cero devuelve nil
         	nil
-        	(if (< (abs (- (setf xn (- x0 (/ (funcall 'f x0) (funcall 'g x0)))) x0)) tol-abs) ;Comprobamos si en esta iteracion hemos encontrado una raiz de la funcion
+        	(if (< (abs (- (setf xn (- x0 (/ (funcall f x0) (funcall g x0)))) x0)) tol-abs) ;Comprobamos si en esta iteracion hemos encontrado una raiz de la funcion
              		x0 ;Si hemos encontrado una raiz termina
              		(newton 'f 'g tol-abs (- max-iter 1) xn) ; Si no iteramos una vez mas con el nuevo valor obtenido y reduciendo el max-iter ya que hemos consumido una iteracion
              	)
 	)
 )
 
-(newton 'f 'g 1 2 2)
+(newton f g 1 2 2)
 
 
 (defun f (x)
@@ -221,8 +219,8 @@ hiperSuperBigVectors
  (defun un-cero-newton (f g tol-abs max-iter semillas)
     (if (equal semillas nil) 
     	nil
-    	(if (equal (setf r (newton 'f 'g tol-abs max-iter (pop semillas))) nil) ;El valor que saca el pop se le pasa a newton
-	    (un-cero-newton 'f 'g tol-abs max-iter semillas) ;La lista semillas que estamos pasando tiene un elemento menos, el primero que saca el pop y ya se ha probado
+    	(if (equal (setf r (newton f g tol-abs max-iter (pop semillas))) nil) ;El valor que saca el pop se le pasa a newton
+	    (un-cero-newton f g tol-abs max-iter semillas) ;La lista semillas que estamos pasando tiene un elemento menos, el primero que saca el pop y ya se ha probado
 	    r
 	)    
     )
@@ -277,13 +275,12 @@ hiperSuperBigVectors
 ;;; para todas las semillas
 ;;;
 (defun todos-ceros-newton (f g tol-abs max-iter semillas)
-       (if (equal semillas nil) 
+       (if (equal 'semillas nil) 
        	   nil
-      	   (if (equal (append r (newton 'f 'g tol-abs max-iter (pop semillas))) nil) ;El valor que saca el pop se le pasa a newton
-      	 	(un-cero-newton 'f 'g tol-abs max-iter semillas) ;La lista semillas que estamos pasando tiene un elemento menos, el primero que saca el pop y ya se ha probado
-      		r
-	   )    
-       )
+	   (while (/= 'semillas nil)
+      	   	  (apend r (un-cero-newton f g tol-abs max-iter semillas))
+	   )
+     	)	  
 )
 
 
@@ -345,24 +342,6 @@ hiperSuperBigVectors
 (combine-list-with-list-of-list '(a b c) '((1 2 3) (x y z)))
 
 (combine-elt-lstolsts 'a '((1 2 3) (x y z)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
